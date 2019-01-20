@@ -6,7 +6,7 @@ import (
 	"gitee.com/johng/gf/g"
 )
 
-func Add(data g.List, tbStr string) (int, error) {
+func Add(data g.List) (int, error) {
 	db := g.DB()
 	tx, err := db.Begin()
 	var r sql.Result
@@ -20,4 +20,14 @@ func Add(data g.List, tbStr string) (int, error) {
 	}
 	id, _ := r.LastInsertId()
 	return int(id), err
+}
+
+func Count(where ...g.Map) (int, error) {
+	db := g.DB()
+	sql := db.Table(table.TableTaskTime)
+	if len(where) > 0 {
+		sql.And(where[0])
+	}
+	r, err := sql.Count()
+	return r, err
 }
