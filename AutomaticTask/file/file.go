@@ -6,7 +6,11 @@ import (
 	"io/ioutil"
 )
 
-var rootFile = g.Config().GetString("agencyCode")
+var rootFile string
+
+func init() {
+	rootFile = g.Config().GetString("filePath")
+}
 
 // 读取指定文件夹下的文件夹并以字符串数组的形式返回
 func GetDateByFolder() ([]string, error) {
