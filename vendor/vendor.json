@@ -1,0 +1,361 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "RXY+koEM4LuwMzfVoiKyJR6RbU4=",
+			"path": "gitee.com/johng/gf",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "6A8n2t50PVuC90gRNgPvpgELMh8=",
+			"path": "gitee.com/johng/gf/g",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "iGeuqGRHPyvu1OMNhDvCqhy9KZ8=",
+			"path": "gitee.com/johng/gf/g/container/garray",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "3VHXHr//4+5+dUv5uNEdBm5tHuo=",
+			"path": "gitee.com/johng/gf/g/container/glist",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "44SYUqxYgrkC7i01KsUDE1PV1iI=",
+			"path": "gitee.com/johng/gf/g/container/gmap",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "tk+HxfQ3N5qvPaCQfO7l5URcZcQ=",
+			"path": "gitee.com/johng/gf/g/container/gpool",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "Nc561saT9vQ1AKdUnBed0B5w2iY=",
+			"path": "gitee.com/johng/gf/g/container/gqueue",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "GawPatuFcZciRU55Q4ogwCKyIhc=",
+			"path": "gitee.com/johng/gf/g/container/gring",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "PYfjH2CDfAqVwpVjPf3WWy+cNq0=",
+			"path": "gitee.com/johng/gf/g/container/gset",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "xUqu2KtOvhA3WBB1i3vmlRPbUPE=",
+			"path": "gitee.com/johng/gf/g/container/gtype",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "tTJJB/eHrWO9qVn2qM2v6mw3YLE=",
+			"path": "gitee.com/johng/gf/g/container/gvar",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "u1DrSL6hSQkTLUqBsQHeRN5Bu38=",
+			"path": "gitee.com/johng/gf/g/container/internal/rwmutex",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "rRZfwHVI+nnUdOvFz7PfQkepfEo=",
+			"path": "gitee.com/johng/gf/g/database/gdb",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "9Gu3KIdvydbqhqEyLfcFp9/AirA=",
+			"path": "gitee.com/johng/gf/g/database/gredis",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "ZIo0U6DBcD4iAsbM4h+lJSWjZWo=",
+			"path": "gitee.com/johng/gf/g/encoding/gbase64",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "SikSks6bN5rN2XDool0FHgrZdRQ=",
+			"path": "gitee.com/johng/gf/g/encoding/gbinary",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "UB1u/DH6VtAbaEZ7sE/K2I7QPKc=",
+			"path": "gitee.com/johng/gf/g/encoding/ghash",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "uaYxME2GXx594qUrbDRQ7Qxbk6I=",
+			"path": "gitee.com/johng/gf/g/encoding/ghtml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "pAyZ4d1W3Oi8R8pc+Z1VNkwcXPg=",
+			"path": "gitee.com/johng/gf/g/encoding/gjson",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "Czes6kFxAKMwujLvR6/RuYFyxsg=",
+			"path": "gitee.com/johng/gf/g/encoding/gjson/internal/rwmutex",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "FCyAlQn97n0GkABU/gh2WEon0LM=",
+			"path": "gitee.com/johng/gf/g/encoding/gparser",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "sdgu3BmTpS9Eb3Zh6LLp/3jGkDM=",
+			"path": "gitee.com/johng/gf/g/encoding/gtoml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "z3G06MhLHVusYlqwe27xnED2RjI=",
+			"path": "gitee.com/johng/gf/g/encoding/gurl",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "mun/UGMOmloS2WQBhPDbL+DbHf4=",
+			"path": "gitee.com/johng/gf/g/encoding/gxml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "pz7+wmBmkAaPxAFhuBEOtvDcVX8=",
+			"path": "gitee.com/johng/gf/g/encoding/gyaml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "6ZHVzMtDeC9KoSgIBLLfKKeT7yw=",
+			"path": "gitee.com/johng/gf/g/frame/gins",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "i4ggVVg+zi2h5hAV1vRti00g+pM=",
+			"path": "gitee.com/johng/gf/g/frame/gmvc",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "laIDIpD8VJi6tqusyfp/0c2AqyM=",
+			"path": "gitee.com/johng/gf/g/net/ghttp",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "5KjC0gdXV5O1GDBW5fREYVaq8l0=",
+			"path": "gitee.com/johng/gf/g/net/gtcp",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "hUIMZ3Nqm6VddvBu4X84QYvTK3o=",
+			"path": "gitee.com/johng/gf/g/net/gudp",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "9s98Mg+si2eAR55XiBjcGWELPdI=",
+			"path": "gitee.com/johng/gf/g/os/gcache",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "pa7V9BUAxvTcQoUqdRL6Y4kslyY=",
+			"path": "gitee.com/johng/gf/g/os/gcfg",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "xegDMVDQFDXK2MWv1i7Yciw/o1g=",
+			"path": "gitee.com/johng/gf/g/os/gcmd",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "qHbVle6lnr7A2nDMAJHo+MkleoU=",
+			"path": "gitee.com/johng/gf/g/os/genv",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "ngYewgUcMLqubWIqwfbOS2mxcZw=",
+			"path": "gitee.com/johng/gf/g/os/gfcache",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "7wgKkliZOQjZlqRRwRS2FkPTtxw=",
+			"path": "gitee.com/johng/gf/g/os/gfile",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "11cjQy8mKxhv5ztf7VrHN2YqsSI=",
+			"path": "gitee.com/johng/gf/g/os/gfpool",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "4CKZ9dHZla2k/3HC1WhdxhWjKQY=",
+			"path": "gitee.com/johng/gf/g/os/gfsnotify",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "UOWGxY/eoKuCZBF0nH3E1oVXj6g=",
+			"path": "gitee.com/johng/gf/g/os/glog",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "znaxRlDmYrJLvqWAMMDV+w8a1Pk=",
+			"path": "gitee.com/johng/gf/g/os/gmlock",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "56rkODdWpAPwTTKee8+l0QvommI=",
+			"path": "gitee.com/johng/gf/g/os/gproc",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "nIIv1fV3i1syWog2SvS5yZV4cvY=",
+			"path": "gitee.com/johng/gf/g/os/gspath",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "SeO/5OGhlF5EptzERDE3B6+magY=",
+			"path": "gitee.com/johng/gf/g/os/gtime",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "sc1ughatiSVMsFHRNOgO3iTHZhg=",
+			"path": "gitee.com/johng/gf/g/os/gview",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "iNIUvCsNGQYe55au/l3lf2t3jVA=",
+			"path": "gitee.com/johng/gf/g/os/gview/internal/text/template",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "I7YSVTJ5S1WavjhyptKcGtEjeIo=",
+			"path": "gitee.com/johng/gf/g/os/gview/internal/text/template/parse",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "H+KVHuYYuBfJu03nZFcUhLvKLBU=",
+			"path": "gitee.com/johng/gf/g/util/gconv",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "RmL6GG/iUCn0jMwzCaEgVpq8zqw=",
+			"path": "gitee.com/johng/gf/g/util/grand",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "2+FwlMvVYkgyvrYYAaw8P/NsyIs=",
+			"path": "gitee.com/johng/gf/g/util/gregex",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "yMK1HO5AvEuKctPrJ5K33zbg1yw=",
+			"path": "gitee.com/johng/gf/g/util/gstr",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "yflbZ6evqrpJY1DLeEh5x+JTaeM=",
+			"path": "gitee.com/johng/gf/g/util/gutil",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "6o/vS5WoiCe63OPTacgZT/yTqw8=",
+			"path": "gitee.com/johng/gf/third/github.com/BurntSushi/toml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "Cz8fV0Jo22yPc977yW0BqcP2qt4=",
+			"path": "gitee.com/johng/gf/third/github.com/axgle/mahonia",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "2LPWAcTcqh0apchHlM1T/Bv/CaE=",
+			"path": "gitee.com/johng/gf/third/github.com/clbanning/mxj",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "lvK6/JcDXc4cg8/0a4tRb61lITI=",
+			"path": "gitee.com/johng/gf/third/github.com/fatih/structs",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "DXJwBDxRCDgH2hbEOPe9EUk2GoA=",
+			"path": "gitee.com/johng/gf/third/github.com/fsnotify/fsnotify",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "UMbfS3Zt00XQp96MLhktqfVQwvI=",
+			"path": "gitee.com/johng/gf/third/github.com/ghodss/yaml",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "hoai+ov39KLPbtwMDmkQ0yoQBlQ=",
+			"path": "gitee.com/johng/gf/third/github.com/go-sql-driver/mysql",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "aXAj0aYq7R9HleVahjwpDt/godw=",
+			"path": "gitee.com/johng/gf/third/github.com/gomodule/redigo/internal",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "2F4OUvlcxyPikgjXWXGxrYcdZl0=",
+			"path": "gitee.com/johng/gf/third/github.com/gomodule/redigo/redis",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "rGr+vowdRxCj/fSs/aeX44l65gY=",
+			"path": "gitee.com/johng/gf/third/github.com/gorilla/websocket",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "aA4Qtl/nAQ+1+b6B75ZqesBFI9E=",
+			"path": "gitee.com/johng/gf/third/github.com/grokify/html-strip-tags-go",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "yt4LtS6bcIM/Lwt8KA3dZUHdhik=",
+			"path": "gitee.com/johng/gf/third/github.com/mattn/go-runewidth",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "Kv4mFIRbYx87lz/TitdbP8IXOsU=",
+			"path": "gitee.com/johng/gf/third/github.com/olekukonko/tablewriter",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "iZQeRBq4eCJKWU4t7gNg6NCRRYc=",
+			"path": "gitee.com/johng/gf/third/golang.org/x/sys/unix",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "W3TpSo2qEyvq5pPA55EjDnALMi0=",
+			"path": "gitee.com/johng/gf/third/gopkg.in/yaml.v2",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "tbI8u9lSyYD/KApZG0vpgsC4Tu0=",
+			"path": "github.com/360EntSecGroup-Skylar/excelize",
+			"revision": "055d3fadf289f98a1f3cae3fe5177ccc5ea3509d",
+			"revisionTime": "2019-01-06T16:04:03Z"
+		},
+		{
+			"checksumSHA1": "jf/YI3zTT5/Dqvr0V2gLyWzlLbw=",
+			"path": "github.com/astaxie/beego/logs",
+			"revision": "5ea04bdfd3e29e180cd16765fdd02c151cf5250f",
+			"revisionTime": "2018-11-09T04:37:28Z"
+		},
+		{
+			"checksumSHA1": "7oRVoP21hh6tTkZ0xPEjaRpONi8=",
+			"path": "github.com/axgle/mahonia",
+			"revision": "3358181d7394e26beccfae0ffde05193ef3be33a",
+			"revisionTime": "2018-02-08T00:28:26Z"
+		},
+		{
+			"checksumSHA1": "AcCbXEcukCAflj7OImys364ImXY=",
+			"path": "github.com/mohae/deepcopy",
+			"revision": "c48cc78d482608239f6c4c92a4abd87eb8761c90",
+			"revisionTime": "2017-09-29T03:49:55Z"
+		}
+	],
+	"rootPath": "bankBigData"
+}

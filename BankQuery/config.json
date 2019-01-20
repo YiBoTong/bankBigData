@@ -1,0 +1,36 @@
+{
+  "database": {
+    "default": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "master"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "slave"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "slave"
+      }
+    ]
+  },
+  "agencyCode": "2350000",
+  "filePath": "E:/项目文档/银行日志/20180722",
+  "appPort": 7081
+}
