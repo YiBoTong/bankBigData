@@ -2,6 +2,7 @@ package handler
 
 import (
 	"bankBigData/_public/app"
+	"bankBigData/_public/util"
 	"gitee.com/johng/gf/g/frame/gmvc"
 )
 
@@ -10,9 +11,10 @@ type Loan struct {
 }
 
 func (r *Loan) Loan() {
-	//util.CreateClassNameByExcel()
+	util.CreateClassNameByExcel()
+	res := []string{}
 	_ = r.Response.WriteJson(app.Response{
-		Data: 0,
+		Data: res,
 		Status: app.Status{
 			Code:  0,
 			Error: false,

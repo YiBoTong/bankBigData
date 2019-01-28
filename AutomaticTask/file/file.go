@@ -1,8 +1,8 @@
 package file
 
 import (
+	"bankBigData/_public/log"
 	"gitee.com/johng/gf/g"
-	"github.com/astaxie/beego/logs"
 	"io/ioutil"
 )
 
@@ -15,9 +15,10 @@ func init() {
 // 读取指定文件夹下的文件夹并以字符串数组的形式返回
 func GetDateByFolder() ([]string, error) {
 	var dateFolder []string
+	log.Instance().Println(rootFile)
 	files, err := ioutil.ReadDir(rootFile)
 	if err != nil {
-		logs.Error("error", err)
+		log.Instance().Error(err)
 		return dateFolder, err
 	}
 	for _, file := range files {

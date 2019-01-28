@@ -1,5 +1,14 @@
 package util
 
+import (
+	"bankBigData/_public/log"
+	"fmt"
+	"gitee.com/johng/gf/g"
+	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/astaxie/beego/logs"
+	"strings"
+)
+
 // 根据excel创建分类名称
 //func CreateClassNameByExcel() {
 //	tb := "S_ECIF_ECIF_CERT_INFO"
@@ -155,36 +164,38 @@ package util
 //}
 
 // 写入列
-//func CreateClassNameByExcel() {
-//	//tb := "S_LOAN_DK"
-//	tb := "S_ECIF_ECIF_CERT_INFO"
-//	log.Instance().Println("根据Excel解析生成表配置")
-//	xis, err := excelize.OpenFile("D:/go/src/bankBigData/_static/excel/附件4_下发数据表结构 (自动保存的).xlsx")
-//	if err != nil {
-//		logs.Error(err)
-//		return
-//	}
-//	log.Instance().Println("Excle文件读取完成")
-//	tables := g.List{}
-//	// 获取工作表中sheet1中的值
-//	rows := xis.GetRows("表字典")
-//	for _, row := range rows[1:] {
-//		if row[6] == tb {
-//			tables = append(tables, g.Map{
-//				"table_name": strings.ToLower(tb),
-//				"column":     strings.ToLower(row[1]),
-//			})
-//		}
-//		// 表明（英文）转换为小写
-//		//tables = append(tables, g.Map{
-//		//	"table_name": strings.ToLower(row[0]),
-//		//	"title":      gconv.String(row[1]),
-//		//	"type":       strings.ToLower(row[2]),
-//		//})
-//	}
-//	if err == nil {
-//		_, _ = db_TableColumn.Add(tables, strings.ToLower(tb))
-//	}
-//	//_, _ = db_table.InitTableInfo(tables)
-//	logs.Info("初始化完成")
-//}
+func CreateClassNameByExcel() {
+	tb := "S_LOAN_DK"
+	//tb := "S_ECIF_ECIF_CERT_INFO"
+	log.Instance().Println("根据Excel解析生成表配置")
+	xis, err := excelize.OpenFile("D:/go/src/bankBigData/_static/excel/附件4_下发数据表结构 (自动保存的).xlsx")
+	if err != nil {
+		logs.Error(err)
+		return
+	}
+	log.Instance().Println("Excle文件读取完成")
+	tables := g.List{}
+	// 获取工作表中sheet1中的值
+	rows := xis.GetRows("表字典")
+	for _, row := range rows[1:] {
+		if row[6] == tb {
+			tables = append(tables, g.Map{
+				"table_name": strings.ToLower(tb),
+				"column":     strings.ToLower(row[1]),
+				"text":     strings.ToLower(row[1]),
+			})
+			fmt.Println(row)
+		}
+		// 表明（英文）转换为小写
+		//tables = append(tables, g.Map{
+		//	"table_name": strings.ToLower(row[0]),
+		//	"title":      gconv.String(row[1]),
+		//	"type":       strings.ToLower(row[2]),
+		//})
+	}
+	if err == nil {
+		//_, _ = db_TableColumn.Add(tables, strings.ToLower(tb))
+	}
+	//_, _ = db_table.InitTableInfo(tables)
+	logs.Info("初始化完成")
+}
