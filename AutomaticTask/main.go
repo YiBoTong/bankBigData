@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bankBigData/AutomaticTask/module"
 	"bankBigData/_public/config"
+	"bankBigData/_public/ftp"
 	"bankBigData/_public/log"
 	"gitee.com/johng/gf/g"
 )
@@ -14,6 +14,7 @@ func main() {
 	//gcron.Add("20 * * * * *", func() {
 	//	//module.AutoLoadData()
 	//})
-	module.AutoLoadData()
+	//module.AutoLoadData()
+	pub_ftp.Test()
 	select { }
 }

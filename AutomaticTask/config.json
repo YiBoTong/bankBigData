@@ -31,5 +31,8 @@
     ]
   },
   "agencyCode": "2350000",
-  "filePath": "E:/项目文档/银行日志/20180722"
+  "ftpFolder": "D:/go/src/bankBigData/ftpData",
+  "ftpAddr": "192.168.1.20:21",
+  "ftpUser": "administrator",
+  "ftpPass": "0"
 }

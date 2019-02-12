@@ -88,7 +88,7 @@ func DeCompress(tarFile, dest string) error {
 			}
 		}
 		filename := dest + hdr.Name
-		file, err := createFile(filename)
+		file, err := CreateFile(filename)
 		if err != nil {
 			return err
 		}
@@ -97,7 +97,7 @@ func DeCompress(tarFile, dest string) error {
 	return nil
 }
 
-func createFile(name string) (*os.File, error) {
+func CreateFile(name string) (*os.File, error) {
 	err := os.MkdirAll(string([]rune(name)[0:strings.LastIndex(name, "/")]), 0755)
 	if err != nil {
 		return nil, err

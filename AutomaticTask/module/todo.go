@@ -9,7 +9,7 @@ import (
 )
 
 func AutoLoadData() {
-	SaveDayFolder()
+	//SaveDayFolder()
 	fmt.Println(time.Now(), "--> 123")
 }
 

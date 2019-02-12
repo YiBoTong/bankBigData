@@ -1,8 +1,8 @@
 package util
 
 import (
+	"bankBigData/BankQuery/db/TableColumn"
 	"bankBigData/_public/log"
-	"fmt"
 	"gitee.com/johng/gf/g"
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/astaxie/beego/logs"
@@ -165,8 +165,9 @@ import (
 
 // 写入列
 func CreateClassNameByExcel() {
-	tb := "S_LOAN_DK"
+	//tb := "S_LOAN_DK"
 	//tb := "S_ECIF_ECIF_CERT_INFO"
+	tb := "S_OFCR_CH_ACCT_MAST"
 	log.Instance().Println("根据Excel解析生成表配置")
 	xis, err := excelize.OpenFile("D:/go/src/bankBigData/_static/excel/附件4_下发数据表结构 (自动保存的).xlsx")
 	if err != nil {
@@ -182,9 +183,10 @@ func CreateClassNameByExcel() {
 			tables = append(tables, g.Map{
 				"table_name": strings.ToLower(tb),
 				"column":     strings.ToLower(row[1]),
-				"text":     strings.ToLower(row[1]),
+				"text":       strings.ToLower(row[2]),
+				"table_text": strings.ToLower(row[7]),
+				"sys_text":   strings.ToLower(row[8]),
 			})
-			fmt.Println(row)
 		}
 		// 表明（英文）转换为小写
 		//tables = append(tables, g.Map{
@@ -194,8 +196,9 @@ func CreateClassNameByExcel() {
 		//})
 	}
 	if err == nil {
-		//_, _ = db_TableColumn.Add(tables, strings.ToLower(tb))
+		_, _ = db_TableColumn.Add(tables, strings.ToLower(tb))
 	}
+	//fmt.Println(tables)
 	//_, _ = db_table.InitTableInfo(tables)
 	logs.Info("初始化完成")
 }
