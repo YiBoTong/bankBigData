@@ -229,3 +229,9 @@ func GetSqlMapItemFun(json gjson.Json, reqDataMap map[string]interface{}, append
 		}
 	}
 }
+
+func GetYesterday() string {
+	nTime := time.Now()
+	yesTime := nTime.AddDate(0, 0, -1)
+	return yesTime.Format("20060102")
+}

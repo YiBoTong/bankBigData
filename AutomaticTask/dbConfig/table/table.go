@@ -1,13 +1,14 @@
-package db_public
+package dbc_table
 
 import (
 	"bankBigData/_public/fun"
+	"bankBigData/_public/table"
 	"database/sql"
 	"gitee.com/johng/gf/g"
 )
 
 func Add(data g.List, tbStr string) (int, error) {
-	db := g.DB()
+	db := g.DB(table.CDbName)
 	tx, err := db.Begin()
 	var r sql.Result
 	tbName := ""
@@ -24,4 +25,11 @@ func Add(data g.List, tbStr string) (int, error) {
 	}
 	id, _ := r.LastInsertId()
 	return int(id), err
+}
+
+func All() (g.List, error) {
+	db := g.DB(table.CDbName)
+	model := db.Table(table.CTable).OrderBy("id asc")
+	r, err := model.All()
+	return r.ToList(), err
 }

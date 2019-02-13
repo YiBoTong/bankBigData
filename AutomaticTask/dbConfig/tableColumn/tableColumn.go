@@ -1,4 +1,4 @@
-package db_TableColumn
+package dbc_tableColumn
 
 import (
 	"bankBigData/_public/table"
@@ -7,12 +7,12 @@ import (
 )
 
 func Add(tables g.List, tbName string) (int, error) {
-	db := g.DB()
+	db := g.DB(table.CDbName)
 	tx, err := db.Begin()
 	var r sql.Result
 	if err == nil {
-		_, _ = tx.Table(table.TableColumnConfig).Where("table_name=?", tbName).Delete()
-		r, err = tx.BatchInsert(table.TableColumnConfig, tables, 10)
+		//_, _ = tx.Table(table.CTable).Where("table_name=?", tbName).Delete()
+		r, err = tx.BatchInsert(table.CTableColumnConfig, tables, 10)
 		if err == nil {
 			_ = tx.Commit()
 		} else {
@@ -24,8 +24,8 @@ func Add(tables g.List, tbName string) (int, error) {
 }
 
 func GetColByTableName(tbName string) (g.List, error) {
-	db := g.DB()
-	sql := db.Table(table.TableColumnConfig).Where("table_name=?", tbName)
-	r, err := sql.OrderBy("id asc").All()
+	db := g.DB(table.CDbName)
+	model := db.Table(table.CTableColumnConfig).Where("table_name=?", tbName)
+	r, err := model.OrderBy("id asc").All()
 	return r.ToList(), err
 }

@@ -1,4 +1,5 @@
 {
+  "dbDefaultName": "bank_big_data",
   "database": {
     "default": [
       {
@@ -27,6 +28,75 @@
         "name": "bank_big_data",
         "type": "mysql",
         "role": "slave"
+      }
+    ],
+    "config": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "master"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "slave"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "slave"
+      }
+    ],
+    "information": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "information_schema",
+        "type": "mysql",
+        "role": "master"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "information_schema",
+        "type": "mysql",
+        "role": "slave"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "information_schema",
+        "type": "mysql",
+        "role": "slave"
+      }
+    ],
+    "create": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "",
+        "type": "mysql",
+        "role": "master"
       }
     ]
   },

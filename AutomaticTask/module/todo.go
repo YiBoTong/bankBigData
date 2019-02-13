@@ -1,34 +1,34 @@
 package module
 
 import (
-	"bankBigData/AutomaticTask/db/tableTaskTime"
-	"bankBigData/AutomaticTask/file"
+	"bankBigData/AutomaticTask/dbInit"
+	"bankBigData/AutomaticTask/initTable"
+	"bankBigData/AutomaticTask/task"
+	"bankBigData/_public/log"
 	"fmt"
-	"gitee.com/johng/gf/g"
-	"time"
 )
 
-func AutoLoadData() {
-	//SaveDayFolder()
-	fmt.Println(time.Now(), "--> 123")
+func InitTable() error {
+	e := error(nil)
+	hasDb := initTable.HasDb()
+	if !hasDb {
+		fmt.Println("不存在数据库，即将初始化")
+		e = dbInit.InitDb()
+	} else {
+		fmt.Println("存在数据库")
+	}
+	if e != nil {
+		log.Instance().Println("数据库初始化错误：", e)
+	}
+	return e
 }
 
-func SaveDayFolder() {
-	dayFolderArr := g.List{}
-	dayNum, err := db_tableTaskTime.Count()
-	if dayNum == 0 && err == nil {
-		// 获取日期文件夹
-		dayFolders, err := file.GetDateByFolder()
-		if len(dayFolders) > 0 && err == nil {
-			for _, v := range dayFolders {
-				dayFolderArr = append(dayFolderArr, g.Map{
-					"date": v,
-				})
-			}
-		}
+func AutoLoadData() {
+	e := task.Create()
+	if e == nil {
+		e = task.Run()
 	}
-	dayFolderArr = append(dayFolderArr, g.Map{
-		"date": time.Now().Format("20060102"),
-	})
-	fmt.Println(dayFolderArr)
+	if e != nil {
+		log.Instance().Error("任务执行失败：", e)
+	}
 }

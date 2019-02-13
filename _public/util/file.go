@@ -92,7 +92,7 @@ func DeCompress(tarFile, dest string) error {
 		if err != nil {
 			return err
 		}
-		io.Copy(file, tr)
+		_, _ = io.Copy(file, tr)
 	}
 	return nil
 }
