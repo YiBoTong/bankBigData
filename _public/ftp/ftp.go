@@ -1,8 +1,8 @@
 package pub_ftp
 
 import (
+	"bankBigData/_public/log"
 	"bankBigData/_public/util"
-	"fmt"
 	"gitee.com/johng/gf/g"
 	"github.com/jlaffaye/ftp"
 	"io"
@@ -43,9 +43,6 @@ func GetNameList(path string) []string {
 func DownloadFile(path string) error {
 	res := &ftp.Response{}
 	file := &os.File{}
-	if FtpFolder == "" {
-		FtpFolder = g.Config().GetString("ftpFolder")
-	}
 	conn, e := loginFtp()
 
 	if e == nil {
@@ -68,14 +65,11 @@ func DownloadFile(path string) error {
 		}
 		_ = res.Close()
 	}
+	if e == nil {
+		log.Instance().Println("下载文件：", path)
+	} else {
+		log.Instance().Error("下载文件失败：", path, " 失败原因：", e)
+	}
 	defer file.Close()
 	return e
-}
-
-func Test() {
-	list := GetNameList("/")
-	for _, v := range list {
-		fmt.Println(v)
-	}
-	DownloadFile("/20180722/s_iccs_tbl_acm_accbsc_all_20180722.ddl")
 }

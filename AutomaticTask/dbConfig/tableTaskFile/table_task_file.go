@@ -5,6 +5,8 @@ import (
 	"bankBigData/_public/table"
 	"database/sql"
 	"gitee.com/johng/gf/g"
+	"gitee.com/johng/gf/g/database/gdb"
+	"strings"
 )
 
 func Add(date string, data g.List) (int, error) {
@@ -37,4 +39,37 @@ func Count(where ...g.Map) (int, error) {
 	}
 	r, err := sql.Count()
 	return r, err
+}
+
+func Gets(date string, types g.Slice, where ...g.Map) (g.List, error) {
+	db := g.DB(table.CDbName)
+	sql := db.Table(table.CTaskFile).Where(g.Map{"date": date})
+	if len(where) > 0 {
+		sql.And(where[0])
+	}
+	typeLen := len(types)
+	if typeLen > 0 {
+		t := []string{}
+		for i := 1; i < typeLen-1; i++ {
+			t = append(t, "?")
+		}
+		sql.And("`types` IN("+strings.Join(t, ",")+")", types)
+	}
+	r, err := sql.OrderBy("id asc").All()
+	return r.ToList(), err
+}
+
+func Update(date, fileName string, data g.Map, where g.Map, tx ...gdb.TX) (int, error) {
+	res := sql.Result(nil)
+	e := error(nil)
+	where["date"] = date
+	where["file_name"] = fileName
+	if len(tx) > 0 {
+		res, e = tx[0].Table(table.CTaskFile).Where(where).Data(data).Update()
+	} else {
+		db := g.DB(table.CDbName)
+		res, e = db.Table(table.CTaskFile).Where(where).Data(data).Update()
+	}
+	row, _ := res.RowsAffected()
+	return int(row), e
 }

@@ -351,6 +351,12 @@
 			"revisionTime": "2018-02-08T00:28:26Z"
 		},
 		{
+			"checksumSHA1": "KqhcawVqoraNdVgyGkJZnAL2Yls=",
+			"path": "github.com/jlaffaye/ftp",
+			"revision": "8019e6774408f0ef24753bccba660ae36ff4038d",
+			"revisionTime": "2019-01-26T08:10:51Z"
+		},
+		{
 			"checksumSHA1": "AcCbXEcukCAflj7OImys364ImXY=",
 			"path": "github.com/mohae/deepcopy",
 			"revision": "c48cc78d482608239f6c4c92a4abd87eb8761c90",

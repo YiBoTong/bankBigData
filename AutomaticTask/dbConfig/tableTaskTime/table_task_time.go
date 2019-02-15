@@ -6,6 +6,7 @@ import (
 	"database/sql"
 	"gitee.com/johng/gf/g"
 	"gitee.com/johng/gf/g/database/gdb"
+	"strings"
 )
 
 func Add(data g.List) (int, error) {
@@ -48,12 +49,23 @@ func Count(where ...g.Map) (int, error) {
 	return r, err
 }
 
-func Last(idOrder string, where ...g.Map) (c_entity.TableTaskTime, error) {
+func Last(idOrder string, state g.Slice, where ...g.Map) (c_entity.TableTaskTime, error) {
 	db := g.DB(table.CDbName)
 	data := c_entity.TableTaskTime{}
 	sql := db.Table(table.CTaskTime)
 	if len(where) > 0 {
 		sql.Where(where[0])
+	}
+	if len(state) > 0 {
+		t := []string{}
+		for i := 0; i < len(state)-1; i++ {
+			t = append(t, "?")
+		}
+		if len(where) > 0 {
+			sql.And("state IN ("+strings.Join(t, ",")+")", state)
+		} else {
+			sql.Where("state IN ("+strings.Join(t, ",")+")", state)
+		}
 	}
 	if idOrder == "" {
 		idOrder = "desc"

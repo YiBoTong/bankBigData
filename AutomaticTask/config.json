@@ -1,4 +1,5 @@
 {
+  "debug": true,
   "dbDefaultName": "bank_big_data",
   "database": {
     "default": [
@@ -104,5 +105,8 @@
   "ftpFolder": "D:/go/src/bankBigData/ftpData",
   "ftpAddr": "192.168.1.20:21",
   "ftpUser": "administrator",
-  "ftpPass": "0"
+  "ftpPass": "0",
+  "taskRunTime": "* * 3 * * *",
+  "serverId": 0,
+  "serverSize": 50
 }

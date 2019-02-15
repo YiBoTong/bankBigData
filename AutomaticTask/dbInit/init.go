@@ -10,6 +10,7 @@ import (
 	"gitee.com/johng/gf/g/util/gconv"
 	"regexp"
 	"strings"
+	"time"
 )
 
 // sql中的关键字
@@ -18,6 +19,8 @@ var numReg = regexp.MustCompile(`(\d+)`)
 func InitDb() error {
 	e := createdDB()
 	tables := g.List{}
+	// 5秒后进行表初始化
+	time.Sleep(time.Duration(5) * time.Second)
 	if e == nil {
 		tables, e = dbc_table.All()
 	}
@@ -85,7 +88,7 @@ func createdTable(tableName string, col g.List) error {
 	if len(keyItem) > 0 {
 		tableItem = append(tableItem, "PRIMARY KEY ("+strings.Join(keyItem, ",")+")")
 	}
-	sql := "CREATE TABLE `" + tableName + "` (" + strings.Join(tableItem, ",") + ") ENGINE=MyISAM DEFAULT CHARSET=utf8";
+	sql := "CREATE TABLE `" + tableName + "` (" + strings.Join(tableItem, ",") + ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
 	_, _ = db.Exec("DROP TABLE IF EXISTS `" + tableName + "`")
 	_, e := db.Exec(sql)
 	if e == nil {

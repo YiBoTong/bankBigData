@@ -9,4 +9,3 @@ func HasDb() bool {
 	num, _ := dbi_info.DbNum(table.DbDefaultName)
 	return num > 0
 }
-

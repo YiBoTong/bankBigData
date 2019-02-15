@@ -114,7 +114,7 @@ func Gzip(gzFilePath, exportPath string) (bool, error) {
 	if exportPath == "" {
 		baseExportPath = strings.Join(basePath[:len(basePath)-1], "/")
 	}
-	log.Instance().Println("gz路径：%s，解压存放路径：%s", gzFilePath, baseExportPath)
+	log.Instance().Println("gz路径：", gzFilePath, " 解压存放路径：", baseExportPath)
 	// file read
 	fileRes, err := os.Open(gzFilePath)
 	if err != nil {
@@ -134,9 +134,9 @@ func Gzip(gzFilePath, exportPath string) (bool, error) {
 	defer fileTemp.Close()
 	// write file
 	_, err = io.Copy(fileTemp, gzipRes)
-	if err != nil {
-		return false, err
-	}
+	//if err != nil {
+	//	return false, err
+	//}
 
 	// tar read
 	//tarRes := tar.NewReader(gzipRes)
@@ -162,5 +162,17 @@ func Gzip(gzFilePath, exportPath string) (bool, error) {
 	//		return false, err
 	//	}
 	//}
-	return true, nil
+	return err == nil, err
+}
+
+// 根据路径判断文件是否存在
+func PathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }

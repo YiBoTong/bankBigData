@@ -33,3 +33,10 @@ func All() (g.List, error) {
 	r, err := model.All()
 	return r.ToList(), err
 }
+
+func Page(offset, size int) (g.List, error) {
+	db := g.DB(table.CDbName)
+	model := db.Table(table.CTable).OrderBy("id asc")
+	r, err := model.Limit(offset, size).All()
+	return r.ToList(), err
+}

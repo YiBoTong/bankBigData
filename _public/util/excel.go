@@ -171,7 +171,6 @@ func CreateClassNameByExcel() {
 	log.Instance().Println("根据Excel解析生成表配置")
 	xis, err := excelize.OpenFile("D:/go/src/bankBigData/_static/excel/下发数据表结构.xlsx")
 	if err != nil {
-		logs.Error(err)
 		return
 	}
 	log.Instance().Println("Excle文件读取完成")

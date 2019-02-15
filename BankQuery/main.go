@@ -13,7 +13,7 @@ const (
 	apiPath = "/api/" + config.BankNameSpace
 )
 
-func main()  {
+func main() {
 	g.Config().SetFileName("config.json")
 	log.Init(config.BankNameSpace)
 	g.DB().SetDebug(true)

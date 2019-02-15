@@ -10,4 +10,3 @@ type QueryLoanListItem struct {
 	// 结欠金额
 	XdCol7 int `db:"xd_col7" json:"xd_col7" field:"xd_col7"`
 }
-

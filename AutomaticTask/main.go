@@ -10,20 +10,21 @@ import (
 
 func main() {
 	g.Config().SetFileName("config.json")
+	debug := g.Config().GetBool("debug")
 	table.DbDefaultName = g.Config().GetString("dbDefaultName")
 	log.Init(config.TaskNameSpace)
-	g.DB().SetDebug(true)
-	g.DB(table.CDbName).SetDebug(true)
-	g.DB(table.IDBName).SetDebug(true)
-	g.DB(table.CRDBName).SetDebug(true)
+	g.DB().SetDebug(debug)
+	g.DB(table.CDbName).SetDebug(debug)
+	g.DB(table.IDBName).SetDebug(debug)
+	g.DB(table.CRDBName).SetDebug(debug)
+	module.InitConf()
 	e := module.InitTable()
 	if e != nil {
 		return
 	}
-	//gcron.Add("5 * * * * *", func() {
-	//	module.AutoLoadData()
-	//})
+	// 自动定时执行任务
+	//_ = gcron.Add(g.Config().GetString("taskRunTime"), func() {
 	module.AutoLoadData()
-	//pub_ftp.Test()
-	//select {}
+	//})
+	select {}
 }
