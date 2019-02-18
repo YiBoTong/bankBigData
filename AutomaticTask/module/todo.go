@@ -11,6 +11,7 @@ import (
 )
 
 func InitConf() {
+	task.AfterDay = g.Config().GetInt("afterDay")
 	if pub_ftp.FtpFolder == "" {
 		pub_ftp.FtpFolder = g.Config().GetString("ftpFolder")
 	}
@@ -53,5 +54,7 @@ func AutoLoadData() {
 	task.TaskRuning = false
 	if e != nil {
 		log.Instance().Error("任务执行失败：", e)
+	} else {
+		log.Instance().Println("任务执行成功")
 	}
 }

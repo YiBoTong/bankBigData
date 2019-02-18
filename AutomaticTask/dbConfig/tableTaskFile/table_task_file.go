@@ -60,16 +60,14 @@ func Gets(date string, types g.Slice, where ...g.Map) (g.List, error) {
 }
 
 func Update(date, fileName string, data g.Map, where g.Map, tx ...gdb.TX) (int, error) {
-	res := sql.Result(nil)
 	e := error(nil)
 	where["date"] = date
 	where["file_name"] = fileName
 	if len(tx) > 0 {
-		res, e = tx[0].Table(table.CTaskFile).Where(where).Data(data).Update()
+		_, e = tx[0].Table(table.CTaskFile).Where(where).Data(data).Update()
 	} else {
 		db := g.DB(table.CDbName)
-		res, e = db.Table(table.CTaskFile).Where(where).Data(data).Update()
+		_, e = db.Table(table.CTaskFile).Where(where).Data(data).Update()
 	}
-	row, _ := res.RowsAffected()
-	return int(row), e
+	return 1, e
 }

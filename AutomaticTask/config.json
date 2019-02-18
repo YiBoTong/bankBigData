@@ -1,5 +1,5 @@
 {
-  "debug": true,
+  "debug": false,
   "dbDefaultName": "bank_big_data",
   "database": {
     "default": [
@@ -129,5 +129,7 @@
   "ftpPass": "0",
   "taskRunTime": "* * 3 * * *",
   "serverId": 0,
-  "serverSize": 50
+  "serverSize": 50,
+  "readTableNum": 3,
+  "afterDay:": 20170101
 }

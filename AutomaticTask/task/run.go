@@ -24,16 +24,15 @@ func Run() error {
 	log.Instance().Println("开始执行任务")
 	lastTask, e := dbc_tableTaskTime.Last("asc", g.Slice{0, 1}, g.Map{})
 	if lastTask.Id != 0 {
-		switch lastTask.State {
 		// 任务文件已经下载并且解压
-		case 1:
+		if lastTask.State < 2 {
 			e = runTask(lastTask)
-		// 任务还未初始化
-		case 0:
-			// 1分钟后重新进行任务
-			time.Sleep(time.Duration(60) * time.Second)
-			return Run()
+		} else if lastTask.State == 2 {
+			return nil
 		}
+		// 1分钟后重新进行任务
+		time.Sleep(time.Duration(60) * time.Second)
+		_ = Run()
 	}
 	return e
 }
@@ -41,8 +40,23 @@ func Run() error {
 func runTask(task c_entity.TableTaskTime) error {
 	_, e := dbc_tableTaskTime.Update(task.Date, g.Map{"start_time": util.GetLocalNowTimeStr()}, g.Map{})
 	hasErr := true
-	if !loadFile(task) {
-		hasErr = analysis(task, 1)
+	// 只有serverId为0或者1的服务才能进行文件下载
+	if ServerId < 2 && task.State == 0 {
+		log.Instance().Println("ftp下载文件")
+		hasErr = loadFile(task)
+	} else {
+		hasErr = false
+	}
+	if !hasErr {
+		if task.State == 1 {
+			log.Instance().Println("开始分析")
+			hasErr = analysis(task)
+		} else {
+			log.Instance().Println("重新运行分析任务：runTask")
+			// 1分钟后重新进行任务
+			time.Sleep(time.Duration(60) * time.Second)
+			_ = Run()
+		}
 	}
 	if !hasErr {
 		_, e = dbc_tableTaskTime.Update(task.Date, g.Map{"end_time": util.GetLocalNowTimeStr(), "state": 2}, g.Map{})

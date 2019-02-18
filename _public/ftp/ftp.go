@@ -32,10 +32,14 @@ func loginFtp() (*ftp.ServerConn, error) {
 func GetNameList(path string) []string {
 	nameList := []string{}
 	conn, e := loginFtp()
-	defer conn.Quit()
 	if e == nil {
-		nameList, _ = conn.NameList(path)
-		_ = conn.Logout()
+		nameList, e = conn.NameList(path)
+	}
+	if e == nil {
+		e = conn.Logout()
+	}
+	if e == nil {
+		_ = conn.Quit()
 	}
 	return nameList
 }

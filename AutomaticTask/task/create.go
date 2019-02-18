@@ -7,6 +7,7 @@ import (
 	"bankBigData/_public/log"
 	"bankBigData/_public/util"
 	"gitee.com/johng/gf/g"
+	"gitee.com/johng/gf/g/util/gconv"
 	"regexp"
 	"strings"
 	"time"
@@ -45,22 +46,29 @@ var entityFileSuffixReg = regexp.MustCompile(`\.ddl$`)
 // 数据文件
 var dataFileSuffixReg = regexp.MustCompile(`\.del\.gz$`)
 
+// 跳过指定的日期之前的日期
+var AfterDay = 0
+
 // 创建任务
 func Create() error {
 	log.Instance().Println("开始创建任务")
 	yesterday := util.GetYesterday()
 	lastTask, e := dbc_tableTaskTime.Last("desc", g.Slice{})
-	if lastTask.Id == 0 {
-		e = ScanAllDate()
+	if e == nil {
+		if lastTask.Id == 0 {
+			e = ScanAllDate()
+		}
+		if lastTask.Date != yesterday {
+			log.Instance().Println("添加指定日期任务：", yesterday)
+			e = Add([]string{yesterday})
+		}
+		if scanning == false {
+			e = Scan()
+		}
+		log.Instance().Println("任务创建完毕")
+	} else {
+		log.Instance().Println("任务创建失败：", e)
 	}
-	if lastTask.Date != yesterday {
-		log.Instance().Println("添加指定日期任务：", yesterday)
-		e = Add([]string{yesterday})
-	}
-	if e == nil && scanning == false {
-		e = Scan()
-	}
-	log.Instance().Println("任务创建完毕")
 	return e
 }
 
@@ -70,7 +78,7 @@ func ScanAllDate() error {
 	allDate := []string{}
 	for _, v := range allFileList {
 		v = strings.Replace(v, "/", "", 1)
-		if dateReg.MatchString(v) {
+		if dateReg.MatchString(v) && gconv.Int(v) >= AfterDay {
 			allDate = append(allDate, v)
 		}
 	}

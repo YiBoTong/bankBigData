@@ -24,7 +24,7 @@ func main() {
 	s.BindStatusHandlerByMap(map[int]ghttp.HandlerFunc{
 		500: router.Status_500,
 	})
-	s.SetLogPath(config.LogPath)
+	s.SetLogPath(g.Config().GetString("logPath"))
 	s.SetAccessLogEnabled(true)
 	s.SetErrorLogEnabled(true)
 	s.SetPort(g.Config().GetInt("appPort"))

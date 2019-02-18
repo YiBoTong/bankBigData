@@ -8,7 +8,8 @@ import (
 	"bankBigData/_public/util"
 	"gitee.com/johng/gf/g"
 	"gitee.com/johng/gf/g/util/gconv"
-	"math"
+	"sync"
+	"time"
 )
 
 // 每次分析表数量
@@ -17,58 +18,71 @@ const analysisNum = 3
 // 基础偏移量
 var baseOffset = 0
 
-// 最后一页的limit数量
-var offsetPage = 1
-
-// 最后一次偏移数
-var lastLimit = 1
+// 同时分析表数量
+var readTableNum = 3
 
 func InitAnalysisConf() {
-	baseOffset = (ServerId - 1) * ServerSize
-	offsetPage = int(math.Floor(gconv.Float64(ServerSize / analysisNum)))
-	lastLimit = ServerSize % analysisNum
+	if ServerId > 0 {
+		baseOffset = (ServerId - 1) * ServerSize
+	}
 	if ServerId > 1 {
 		baseOffset += 1
-		if lastLimit > 0 {
-			lastLimit -= 1
-		}
 	}
+	readTableNum = g.Config().GetInt("readTableNum")
 }
 
-func analysis(task c_entity.TableTaskTime, page int) bool {
-	offset := (page-1)*analysisNum + baseOffset
-	limitSize := analysisNum
+var AnalysisRunNum = 0
+
+func analysis(task c_entity.TableTaskTime) bool {
+	offset := (ServerId-1)*analysisNum + baseOffset
+	limitSize := 0
 	if ServerId > 0 {
-		if page > offsetPage+1 {
-			return true
-		}
-		if page-1 == offsetPage {
-			limitSize = lastLimit
-		}
-		log.Instance().Println("正在进行", ServerId, "(", baseOffset, "-", baseOffset+ServerSize, ")", "索引：", page)
-	} else {
-		log.Instance().Println("正在进行索引：", page)
+		limitSize = ServerSize
 	}
+	log.Instance().Println("正在进行索引：", ServerId)
 	tables, e := dbc_table.Page(offset, limitSize)
+	tableMap := []c_entity.Table{}
+	wg := sync.WaitGroup{}
 	if e == nil && len(tables) > 0 {
 		for _, v := range tables {
-			flg := make(chan int)
 			item := c_entity.Table{}
 			if ok := gconv.Struct(v, &item); ok == nil {
-				go analysisTaskFileByTable(task, item, flg)
+				tableMap = append(tableMap, item)
 			}
-			<-flg
 		}
-		return analysis(task, page+1)
+
+		for {
+			tbLen := len(tableMap)
+			if AnalysisRunNum >= readTableNum {
+				time.Sleep(time.Duration(1) * time.Second)
+				continue
+			}
+			if tbLen == 0 {
+				break
+			}
+			AnalysisRunNum++
+			wg.Add(1)
+			tableItem := tableMap[0]
+			if tableItem.Id == 0 {
+				AnalysisRunNum -= 1
+				break
+			}
+			tableMap = tableMap[1:]
+			log.Instance().Println("等待分析表数：", tbLen)
+			go analysisTaskFileByTable(task, tableItem, &wg)
+		}
 	}
+	tables = nil
+	tableMap = nil
+	wg.Wait()
 	return e != nil
 }
 
-func analysisTaskFileByTable(task c_entity.TableTaskTime, table c_entity.Table, flg chan int) {
+func analysisTaskFileByTable(task c_entity.TableTaskTime, table c_entity.Table, wg *sync.WaitGroup) {
+	log.Instance().Println("开始分析表：", table.TableName)
 	taskFiles, e := dbc_tableTaskFile.Gets(task.Date, g.Slice{"all", "add", "unSplit"}, g.Map{"table_name": table.TableName, "is_down": 1, "db_do": 0})
 	entityFile := c_entity.TableTaskFile{}
 	dataFile := c_entity.TableTaskFile{}
-	log.Instance().Println("开始分析表：", table.TableName)
 	if e == nil && len(taskFiles) > 0 {
 		for _, v := range taskFiles {
 			item := c_entity.TableTaskFile{}
@@ -86,7 +100,8 @@ func analysisTaskFileByTable(task c_entity.TableTaskTime, table c_entity.Table, 
 	}
 	log.Instance().Println("表分析完成：", table.TableName)
 	taskFiles = nil
-	flg <- 1
+	wg.Done()
+	AnalysisRunNum -= 1
 }
 
 func analysisTaskFile(table c_entity.Table, entityFile, dataFile c_entity.TableTaskFile) error {
