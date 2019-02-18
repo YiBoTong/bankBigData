@@ -34,7 +34,7 @@ func GetNameList(path string) []string {
 	conn, e := loginFtp()
 	defer conn.Quit()
 	if e == nil {
-		nameList, e = conn.NameList(path)
+		nameList, _ = conn.NameList(path)
 		_ = conn.Logout()
 	}
 	return nameList

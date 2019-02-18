@@ -4,12 +4,11 @@ import (
 	"bankBigData/AutomaticTask/dbConfig/table"
 	"bankBigData/AutomaticTask/dbConfig/tableTaskFile"
 	"bankBigData/AutomaticTask/entity/config"
-	"bankBigData/_public/ftp"
 	"bankBigData/_public/log"
+	"bankBigData/_public/util"
 	"gitee.com/johng/gf/g"
 	"gitee.com/johng/gf/g/util/gconv"
 	"math"
-	"strings"
 )
 
 // 每次分析表数量
@@ -86,38 +85,31 @@ func analysisTaskFileByTable(task c_entity.TableTaskTime, table c_entity.Table, 
 		}
 	}
 	log.Instance().Println("表分析完成：", table.TableName)
+	taskFiles = nil
 	flg <- 1
 }
 
 func analysisTaskFile(table c_entity.Table, entityFile, dataFile c_entity.TableTaskFile) error {
-	dateFileStr := dataFile.FileName
-	if dataFile.IsGz {
-		dateFileStr = dateFileStr[:len(dateFileStr)-3]
-	}
-	basePath := strings.Join([]string{pub_ftp.FtpFolder, entityFile.Date}, "/")
-	dateFilePath := strings.Join([]string{basePath, dateFileStr}, "/")
-	entityFilePath := strings.Join([]string{basePath, entityFile.FileName}, "/")
-
 	readNum := make(chan int)
-	listMap := make(chan g.List)
-	flg := make(chan int)
+	listMap := make(chan []g.List)
 	writeError := make(chan bool)
 
 	log.Instance().Println("开始表文件分析：", table.TableName)
 
-	go readTableDataFile(entityFilePath, dateFilePath, dataFile.LineNum, readNum, listMap)
-	go WriteDataToTable(table, dataFile, readNum, listMap, flg, writeError)
+	go readTableDataFile(entityFile, dataFile, readNum, listMap)
+	go WriteData(table, dataFile, readNum, listMap, writeError)
 
-	e, _ := <-writeError
-	if !e {
+	e, _ := <-writeError;
+	listMap = nil
+	if e == false {
 		if entityFile.Date != "" {
-			_, _ = dbc_tableTaskFile.Update(entityFile.Date, entityFile.FileName, g.Map{"db_do": 1}, g.Map{"db_do": 0})
 			_, _ = dbc_tableTaskFile.Update(dataFile.Date, dataFile.FileName, g.Map{"db_do": 1}, g.Map{"db_do": 0})
+			_, _ = dbc_tableTaskFile.Update(entityFile.Date, entityFile.FileName, g.Map{"db_do": 1}, g.Map{"db_do": 0})
 		}
 		log.Instance().Println("表文件分析完成：", table.TableName)
 	} else {
 		log.Instance().Println("表文件分析错误：", table.TableName)
 	}
-	<-flg
+	_, _ = dbc_tableTaskFile.Update(dataFile.Date, dataFile.FileName, g.Map{"db_do_end_time": util.GetLocalNowTimeStr()}, g.Map{})
 	return nil
 }

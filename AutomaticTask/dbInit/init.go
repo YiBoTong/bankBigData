@@ -24,11 +24,13 @@ func InitDb() error {
 	if e == nil {
 		tables, e = dbc_table.All()
 	}
+	tabLen := len(tables)
 	if e == nil {
-		for _, v := range tables {
+		for i, v := range tables {
 			item := c_entity.Table{}
 			if ok := gconv.Struct(v, &item); ok == nil {
 				e = initTable(item.TableName)
+				log.Instance().Println("剩余初始化表数：", tabLen-i-1)
 			}
 			if e != nil {
 				break
@@ -88,7 +90,8 @@ func createdTable(tableName string, col g.List) error {
 	if len(keyItem) > 0 {
 		tableItem = append(tableItem, "PRIMARY KEY ("+strings.Join(keyItem, ",")+")")
 	}
-	sql := "CREATE TABLE `" + tableName + "` (" + strings.Join(tableItem, ",") + ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
+	// MyISAM | InnoDB
+	sql := "CREATE TABLE `" + tableName + "` (" + strings.Join(tableItem, ",") + ") ENGINE=InnoDB DEFAULT CHARSET=utf8"
 	_, _ = db.Exec("DROP TABLE IF EXISTS `" + tableName + "`")
 	_, e := db.Exec(sql)
 	if e == nil {
