@@ -6,8 +6,8 @@ import (
 	"bankBigData/BankServerJournal/table"
 	"bankBigData/_public/config"
 	"bankBigData/_public/log"
-	"git.91ybt.com/lib/gf/g/os/gcron"
 	"gitee.com/johng/gf/g"
+	"gitee.com/johng/gf/g/os/os/gcron"
 )
 
 var apiPath = "/api/qnb_go/journal"

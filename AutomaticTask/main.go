@@ -5,8 +5,8 @@ import (
 	"bankBigData/_public/config"
 	"bankBigData/_public/log"
 	"bankBigData/_public/table"
-	"git.91ybt.com/lib/gf/g/os/gcron"
 	"gitee.com/johng/gf/g"
+	"gitee.com/johng/gf/g/os/os/gcron"
 )
 
 func main() {
