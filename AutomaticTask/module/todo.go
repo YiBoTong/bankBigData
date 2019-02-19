@@ -1,6 +1,7 @@
 package module
 
 import (
+	"bankBigData/AutomaticTask/dbConfig/tableTaskTime"
 	"bankBigData/AutomaticTask/dbInit"
 	"bankBigData/AutomaticTask/initTable"
 	"bankBigData/AutomaticTask/task"
@@ -46,6 +47,10 @@ func AutoLoadData() {
 	// 只有serverId为0或者1的服务才能进行创建任务，其他的都是执行任务
 	if task.ServerId < 2 {
 		e = task.Create()
+	}
+	if e == nil {
+		lastTask, _ := dbc_tableTaskTime.Last("desc", g.Slice{}, g.Map{})
+		task.LastTaskId = lastTask.Id
 	}
 	if e == nil && !task.TaskRuning {
 		task.TaskRuning = true

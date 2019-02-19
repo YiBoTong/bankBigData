@@ -19,6 +19,9 @@ var camelCaseReg = regexp.MustCompile(`_\w`)
 // sql中的关键字
 var sqlKeyReg = regexp.MustCompile(`^(key|order)$`)
 
+// 日期正则
+var DayReg = regexp.MustCompile(`^\d[4]-\d[2]-\d[2]$`)
+
 func init() {
 	initUrlMsgStr()
 }

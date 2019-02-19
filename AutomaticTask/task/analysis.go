@@ -21,6 +21,8 @@ var baseOffset = 0
 // 同时分析表数量
 var readTableNum = 3
 
+var LastTaskId = 0
+
 func InitAnalysisConf() {
 	if ServerId > 0 {
 		baseOffset = (ServerId - 1) * ServerSize
@@ -46,7 +48,8 @@ func analysis(task c_entity.TableTaskTime) bool {
 	if e == nil && len(tables) > 0 {
 		for _, v := range tables {
 			item := c_entity.Table{}
-			if ok := gconv.Struct(v, &item); ok == nil {
+			// 不是最后一个任务只处理增量更新的
+			if ok := gconv.Struct(v, &item); ok == nil && (item.Type == "all" && LastTaskId == task.Id || item.Type == "add") {
 				tableMap = append(tableMap, item)
 			}
 		}

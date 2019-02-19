@@ -1,6 +1,7 @@
 package config
 
 const (
-	BankNameSpace = "bank"
-	TaskNameSpace = "bankTask"
+	BankNameSpace              = "bank"
+	TaskNameSpace              = "bankTask"
+	BankServerJournalNameSpace = "bankServerJournal"
 )

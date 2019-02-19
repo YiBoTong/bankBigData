@@ -13,8 +13,9 @@ type Pager struct {
 }
 
 type Response struct {
-	Data   interface{} `json:"data"`
-	Status Status      `json:"status"`
+	Data interface{} `json:"data"`
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
 }
 
 type ListResponse struct {

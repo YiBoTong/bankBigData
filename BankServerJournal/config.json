@@ -1,0 +1,122 @@
+{
+  "debug": true,
+  "appPort": 6081,
+  "database": {
+    "default": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "master",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      }
+    ],
+    "config": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "master",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "bank_big_data_config",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      }
+    ],
+    "peasantService": [
+      {
+        "host": "127.0.0.1",
+        "port": "3310",
+        "user": "root",
+        "pass": "root",
+        "name": "peasant_service",
+        "type": "mysql",
+        "role": "master",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3311",
+        "user": "root",
+        "pass": "root",
+        "name": "peasant_service",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      },
+      {
+        "host": "127.0.0.1",
+        "port": "3312",
+        "user": "root",
+        "pass": "root",
+        "name": "peasant_service",
+        "type": "mysql",
+        "role": "slave",
+        "MaxIdleConnCount": 2,
+        "MaxOpenConnCount": 20
+      }
+    ]
+  },
+  "redis": {
+    "default": "127.0.0.1:6379,0,root123",
+    "cache": "127.0.0.1:6379,1,root123"
+  },
+  "redisClearTime": "* * 2 * * *",
+  "logPath": "D:/log",
+  "excelTempPath": "D:/go/src/bankBigData/BankServerJournal/_excelTemp/",
+  "excelFilePath": "D:/go/src/bankBigData/BankServerJournal/_excelFile/",
+  "excelInfoFileName": "附件2农民工信息统计表.xlsx",
+  "excelLoanFileName": "附件3不良贷款信息统计表.xlsx",
+  "excelEntreFileName": "附件4创业情况统计表.xlsx"
+}

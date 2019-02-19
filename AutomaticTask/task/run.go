@@ -52,7 +52,7 @@ func runTask(task c_entity.TableTaskTime) error {
 			log.Instance().Println("开始分析")
 			hasErr = analysis(task)
 		} else {
-			log.Instance().Println("重新运行分析任务：runTask")
+			log.Instance().Println("重新运行分析任务：RUN")
 			// 1分钟后重新进行任务
 			time.Sleep(time.Duration(60) * time.Second)
 			_ = Run()
