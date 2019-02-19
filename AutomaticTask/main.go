@@ -5,6 +5,7 @@ import (
 	"bankBigData/_public/config"
 	"bankBigData/_public/log"
 	"bankBigData/_public/table"
+	"git.91ybt.com/lib/gf/g/os/gcron"
 	"gitee.com/johng/gf/g"
 )
 
@@ -23,8 +24,8 @@ func main() {
 		return
 	}
 	// 自动定时执行任务
-	//_ = gcron.Add(g.Config().GetString("taskRunTime"), func() {
-	module.AutoLoadData()
-	//})
+	_ = gcron.Add(g.Config().GetString("taskRunTime"), func() {
+		module.AutoLoadData()
+	})
 	select {}
 }
